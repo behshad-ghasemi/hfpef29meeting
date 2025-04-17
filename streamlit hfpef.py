@@ -54,13 +54,13 @@ if st.button("🔍 Estimate 🔍"):
     prob_gb = xgb_model.predict_proba(transformed_input)[:, 1][0]
 
     # Show predictions
-    st.subheader("Prediction Probabilities")
+    st.subheader(" 🤔 Prediction Probabilities ")
     st.write(f"🔹 **Logistic Regression**: {prob_log:.4f}")
     st.write(f"🔹 **Random Forest**: {prob_rf:.4f}")
     st.write(f"🔹 **XG Boosting**: {prob_gb:.4f}")
 
     if prob_gb > 0.6:
-        st.error("🚨💀 OH MY GOD, High Risk of HFpEF Detected!😭😔")
+        st.error("🚨💀 OH MY GOD, High Risk of HFpEF Detected!😭😱")
     else:
         st.success("💃🥳YOHOOOOOOOOOO, Low Risk of HFpEF 🥳💃")
 
@@ -69,6 +69,6 @@ if st.button("🔍 Estimate 🔍"):
     models = ["Logistic Regression", "Random Forest", "XG Boosting"]
     probabilities = [prob_log, prob_rf, prob_gb]
     sns.barplot(x=models, y=probabilities, palette='mako', ax=ax)
-    ax.set_title("Model Probability Comparison 🤔 ")
-    ax.set_ylabel("HFpEF Probability 🤓😱")
+    ax.set_title("Model Probability Comparison  ")
+    ax.set_ylabel("HFpEF Probability ")
     st.pyplot(fig)
