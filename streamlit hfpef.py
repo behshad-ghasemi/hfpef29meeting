@@ -50,7 +50,7 @@ if st.button("Estimate"):
     # Predictions
     prob_log = log_model.predict_proba(transformed_input)[:, 1][0]
     prob_rf = rf_model.predict_proba(transformed_input)[:, 1][0]
-    prob_gb = gb_model.predict_proba(transformed_input)[:, 1][0]
+    prob_gb = xgb_model.predict_proba(transformed_input)[:, 1][0]
 
     # Show predictions
     st.subheader("Prediction Probabilities")
