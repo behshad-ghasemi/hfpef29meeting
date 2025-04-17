@@ -1,8 +1,11 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-
+import joblib
+import seaborn as sns
+import matplotlib.pyplot as plt
 from io import BytesIO
+
 
 # Load models and pipeline
 log_model = joblib.load(r"C:\Users\behsh\AppData\Local\Desktop\Flask_app\logestic_model.pkl")
