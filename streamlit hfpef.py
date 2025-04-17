@@ -65,7 +65,7 @@ if st.button("Estimate"):
 
     # Bar chart for comparison
     fig, ax = plt.subplots(figsize=(6, 5))
-    models = ["Logistic Regression", "Random Forest", "Gradient Boosting"]
+    models = ["Logistic Regression", "Random Forest", "XG Boosting"]
     probabilities = [prob_log, prob_rf, prob_gb]
     sns.barplot(x=models, y=probabilities, palette='mako', ax=ax)
     ax.set_title("Model Probability Comparison")
