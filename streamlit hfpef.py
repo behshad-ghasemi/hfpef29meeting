@@ -31,8 +31,7 @@ FEATURES = ["BSA (non toccare)", 'Epicardial fat thickness (mm)', 'LVEDD (mm)', 
             'Fibrillazione atriale cronica (0, assente; 1, presente)', 'Fumo (0 no; 1 si)', 'sesso']
 
 st.title("🫀 Heart Failure (HFpEF) Probability Prediction 🫀")
-st.markdown("Insert the patient's clinical data below to estimate the probability of HFpEF.
-             \\n 👩‍💻Good Prediction,Behshad 🥰")
+st.markdown("Insert the patient's clinical data below to estimate the probability of HFpEF. \\n 👩‍💻Good Prediction,Behshad 🥰")
 
 user_input = {}
 for feature in FEATURES:
