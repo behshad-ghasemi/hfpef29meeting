@@ -30,8 +30,8 @@ FEATURES = ["BSA (non toccare)", 'Epicardial fat thickness (mm)', 'LVEDD (mm)', 
             'Fibrillazione atriale parossistica (0, assente; 1, presente)',
             'Fibrillazione atriale cronica (0, assente; 1, presente)', 'Fumo (0 no; 1 si)', 'sesso']
 
-st.title("Heart Failure (HFpEF) Probability Prediction")
-st.markdown("Insert the patient's clinical data below to estimate the probability of HFpEF.")
+st.title("🫀 Heart Failure (HFpEF) Probability Prediction 🫀")
+st.markdown("Insert the patient's clinical data below to estimate the probability of HFpEF.\n 👩‍💻Good Prediction,Behshad 🥰")
 
 user_input = {}
 for feature in FEATURES:
@@ -59,9 +59,9 @@ if st.button("Estimate"):
     st.write(f"🔹 **XG Boosting**: {prob_gb:.4f}")
 
     if prob_gb > 0.6:
-        st.error("🚨 High Risk of HFpEF Detected!")
+        st.error("🚨 OH MY GOD, High Risk of HFpEF Detected!😭😔")
     else:
-        st.success("✅ Low Risk of HFpEF")
+        st.success("💃🥳YOHOOOOOOOOOO, Low Risk of HFpEF 🥳💃")
 
     # Bar chart for comparison
     fig, ax = plt.subplots(figsize=(6, 5))
