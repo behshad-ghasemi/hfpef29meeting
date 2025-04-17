@@ -32,7 +32,7 @@ FEATURES = ["BSA (non toccare)", 'Epicardial fat thickness (mm)', 'LVEDD (mm)', 
 
 st.title("🫀 Heart Failure (HFpEF) Probability Prediction 🫀")
 st.markdown("Insert the patient's clinical data below to estimate the probability of HFpEF. ")
-st.markdown("👩‍💻Good Prediction,Behshad 🥰")
+st.markdown("👩‍💻 Good Prediction,Behshad 🥰")
 
 user_input = {}
 for feature in FEATURES:
@@ -43,7 +43,7 @@ for feature in FEATURES:
     else:
         user_input[feature] = st.number_input(f"{feature}", step=0.1)
 
-if st.button("Estimate"):
+if st.button("🔍 Estimate 🔍"):
     input_df = pd.DataFrame([user_input])
     input_df['sesso'] = input_df['sesso'].astype('category')
     transformed_input = pipeline.transform(input_df)
@@ -60,7 +60,7 @@ if st.button("Estimate"):
     st.write(f"🔹 **XG Boosting**: {prob_gb:.4f}")
 
     if prob_gb > 0.6:
-        st.error("🚨 OH MY GOD, High Risk of HFpEF Detected!😭😔")
+        st.error("🚨💀 OH MY GOD, High Risk of HFpEF Detected!😭😔")
     else:
         st.success("💃🥳YOHOOOOOOOOOO, Low Risk of HFpEF 🥳💃")
 
@@ -69,6 +69,6 @@ if st.button("Estimate"):
     models = ["Logistic Regression", "Random Forest", "XG Boosting"]
     probabilities = [prob_log, prob_rf, prob_gb]
     sns.barplot(x=models, y=probabilities, palette='mako', ax=ax)
-    ax.set_title("Model Probability Comparison")
-    ax.set_ylabel("HFpEF Probability")
+    ax.set_title("Model Probability Comparison 🤔 ")
+    ax.set_ylabel("HFpEF Probability 🤓😱")
     st.pyplot(fig)
