@@ -38,7 +38,7 @@ for feature in FEATURES:
     if feature == "sesso":
         user_input[feature] = st.selectbox("Sesso", options=["0", "1"])
     elif any(x in feature for x in ["(0", "1", "2", "presente", "assente", "no", "si"]):
-        user_input[feature] = st.number_input(f"{feature}", min_value=0.0, max_value=2.0, step=1.0)
+        user_input[feature] = st.number_input(f"{feature}", min_value=None, max_value=None, step=0.001)
     else:
         user_input[feature] = st.number_input(f"{feature}", step=0.1)
 
