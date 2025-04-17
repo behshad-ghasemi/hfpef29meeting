@@ -1,7 +1,6 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import joblib
 import seaborn as sns
 import matplotlib.pyplot as plt
 from io import BytesIO
