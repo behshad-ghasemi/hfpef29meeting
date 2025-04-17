@@ -8,10 +8,10 @@ from io import BytesIO
 
 
 # Load models and pipeline
-log_model = joblib.load(r"C:\Users\behsh\AppData\Local\Desktop\Flask_app\logestic_model.pkl")
-rf_model = joblib.load(r"C:\Users\behsh\AppData\Local\Desktop\Flask_app\random_forest_model.pkl")
-gb_model = joblib.load(r"C:\Users\behsh\AppData\Local\Desktop\Flask_app\xgboost_model.pkl")
-pipeline = joblib.load(r"C:\Users\behsh\AppData\Local\Desktop\Flask_app\pipeline.pkl")
+log_model = joblib.load("logistic_model.joblib")
+rf_model = joblib.load("randomforest_model.joblib")
+gb_model = joblib.load("xgboost_model.joblib")
+pipeline = joblib.load("data_with_pca.joblib")
 
 FEATURES = ["BSA (non toccare)", 'Epicardial fat thickness (mm)', 'LVEDD (mm)', 'LVESD (mm)', 'LV mass (g)',
             'LV mass i (g/m2) Calcolo automatico', 'LAD (mm)', 'LAV (ml)', 'iLAV (mL/m2) Calcolo automatico',
