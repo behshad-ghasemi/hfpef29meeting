@@ -9,7 +9,7 @@ from io import BytesIO
 
 # Load models and pipeline
 log_model = joblib.load("Logistic_model.joblib")
-rf_model = joblib.load("RandomForest_model.joblib")
+rf_model = joblib.load("randomforest_model.joblib")
 xgb_model = joblib.load("xgboost_model.joblib")
 pipeline = joblib.load("data_with_pca.joblib")
 
