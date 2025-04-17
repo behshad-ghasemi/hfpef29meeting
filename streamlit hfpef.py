@@ -56,7 +56,7 @@ if st.button("Estimate"):
     st.subheader("Prediction Probabilities")
     st.write(f"🔹 **Logistic Regression**: {prob_log:.4f}")
     st.write(f"🔹 **Random Forest**: {prob_rf:.4f}")
-    st.write(f"🔹 **Gradient Boosting**: {prob_gb:.4f}")
+    st.write(f"🔹 **XG Boosting**: {prob_gb:.4f}")
 
     if prob_gb > 0.6:
         st.error("🚨 High Risk of HFpEF Detected!")
