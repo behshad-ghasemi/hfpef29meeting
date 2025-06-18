@@ -34,34 +34,60 @@ st.title("🫀 Heart Failure (HFpEF) Probability Prediction 🫀")
 st.markdown("Insert the patient's clinical data below to estimate the probability of HFpEF. ")
 st.markdown("👩‍💻 Good Prediction,Behshad 🥰")
 
+
+try:
+    pipeline = joblib.load("data_with_pca.joblib")
+    log_model = joblib.load("Logistic_model.joblib")
+    rf_model = joblib.load("randomforest_model.joblib")
+    xgb_model = joblib.load("xgboost_model.joblib")
+except Exception as e:
+    st.error(f"❌{e}")
+    st.stop()
+
+
 user_input = {}
 for feature in FEATURES:
     if feature == "sesso":
-        user_input[feature] = st.selectbox("Sesso", options=["0", "1"])
-    elif any(x in feature for x in ["(0", "1", "2", "presente", "assente", "no", "si"]):
-        user_input[feature] = st.number_input(f"{feature}", min_value=None, max_value=None, step=0.001)
+        user_input[feature] = st.selectbox("Sesso:", options=["0", "1"])
+    elif any(x in feature.lower() for x in ["assente", "presente", "no", "si", "0", "1", "2"]):
+        user_input[feature] = st.number_input(f"{feature}:", step=1.0)
     else:
-        user_input[feature] = st.number_input(f"{feature}", step=0.1)
+        user_input[feature] = st.number_input(f"{feature}:", step=0.1)
 
+# دکمه پیش‌بینی
 if st.button("🔍 Estimate 🔍"):
-    input_df = pd.DataFrame([user_input])
-    input_df['sesso'] = input_df['sesso'].astype('category')
-    transformed_input = pipeline.transform(input_df)
+    try:
+        input_df = pd.DataFrame([user_input])
+        input_df["sesso"] = input_df["sesso"].astype('category')
 
-    # Predictions
-    prob_log = log_model.predict_proba(transformed_input)[:, 1][0]
-    prob_rf = rf_model.predict_proba(transformed_input)[:, 1][0]
-    prob_gb = xgb_model.predict_proba(transformed_input)[:, 1][0]
+        # اعمال pipeline
+        transformed_input = pipeline.transform(input_df)
 
-    # Show predictions
-    st.subheader(" 🤔 Prediction Probabilities ")
-    st.write(f"🔹 **Logistic Regression**: {prob_log:.4f}")
-    st.write(f"🔹 **Random Forest**: {prob_rf:.4f}")
-    st.write(f"🔹 **XG Boosting**: {prob_gb:.4f}")
+        # پیش‌بینی توسط هر مدل
+        prob_log = log_model.predict_proba(transformed_input)[0][1]
+        prob_rf = rf_model.predict_proba(transformed_input)[0][1]
+        prob_gb = xgb_model.predict_proba(transformed_input)[0][1]
 
-    if prob_gb > 0.6:
-        st.error("🚨💀 OH MY GOD, High Risk of HFpEF Detected!😭😱")
-    else:
+        st.subheader("🤔 Prediction Probabilities")
+        st.write(f"🔹 **Logistic Regression**: `{prob_log:.4f}`")
+        st.write(f"🔹 **Random Forest**: `{prob_rf:.4f}`")
+        st.write(f"🔹 **XG Boosting**: `{prob_gb:.4f}`")
+
+        if prob_gb > 0.6:
+            st.error("🚨💀 High Risk of HFpEF Detected! 😱")
+        else:
+            st.success("✅ Low Risk of HFpEF Detected 🎉")
+
+        # نمودار مقایسه‌ای
+        fig, ax = plt.subplots()
+        sns.barplot(x=["Logistic", "Random Forest", "XGBoost"], y=[prob_log, prob_rf, prob_gb], palette="Set2", ax=ax)
+        ax.set_ylim(0, 1)
+        ax.set_ylabel("Predicted Probability")
+        ax.set_title("Model Comparison")
+        st.pyplot(fig)
+
+    except Exception as e:
+        st.error(f"❌ خطا در پیش‌بینی: {e}")
         st.success("💃🥳YOHOOOOOOOOOO, Low Risk of HFpEF 🥳💃")
 
     # Bar chart for comparison
