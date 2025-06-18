@@ -5,7 +5,11 @@ import joblib
 import seaborn as sns
 import matplotlib.pyplot as plt
 from io import BytesIO
-
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.decomposition import PCA
 
 # Load models and pipeline
 log_model = joblib.load("Logistic_model.joblib")
