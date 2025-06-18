@@ -5,5 +5,5 @@ joblib
 requests
 matplotlib
 seaborn
-scikit-learn
 xgboost
+scikit-learn==1.2.2
