@@ -6,4 +6,4 @@ requests
 matplotlib
 seaborn
 xgboost
-scikit-learn==1.4.2
+scikit-learn
